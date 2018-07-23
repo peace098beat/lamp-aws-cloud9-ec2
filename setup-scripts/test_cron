@@ -1,13 +1,26 @@
 #
+#   ______          __     __________  ____  _   __
+#  /_  __/__  _____/ /_   / ____/ __ \/ __ \/ | / /
+#   / / / _ \/ ___/ __/  / /   / /_/ / / / /  |/ / 
+#  / / /  __(__  ) /_   / /___/ _, _/ /_/ / /|  /  
+# /_/  \___/____/\__/   \____/_/ |_|\____/_/ |_/   
+# 
+# [概要]
+#   CRONの動作を設定する.
+# 
+# [使い方]
+#   本ファイルを編集後,「cron-setup.sh」を実行することで設定を反映
+#   $ sh ~/environment/setup-scripts/test_cron
 #
 # [注意]
 #   1. Cronの設定ファイル名に"."を付けてはいけない
 #
 
+# 変数定義
 CRON_DIR=/home/ec2-user/environment/www/cron
 LOGS=/home/ec2-user/environment/www/logs
 
-# 生存確認
+# 生存確認用に1分毎に実行
 * * * * * ec2-user date 1>$LOGS/date-now-cron.log 2>&1
 * * * * * ec2-user env  1>$LOGS/cron_envs.log 2>&1
 
@@ -17,3 +30,5 @@ LOGS=/home/ec2-user/environment/www/logs
 
 # 1時間毎実行
 1 * * * * ec2-user php $CRON_DIR/60min_exec.php 1> $LOGS/60min_exec.php.log 2>&1
+
+# END

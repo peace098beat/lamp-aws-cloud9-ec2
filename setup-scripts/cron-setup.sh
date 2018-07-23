@@ -27,7 +27,7 @@ if [ `whoami` = 'root' ]; then
 fi
 
 # 以下、スクリプト本体
-sudo mv /home/ec2-user/environment/setup-scripts/test_cron /etc/cron.d/test_cron # cronファイルをコピー
+sudo cp /home/ec2-user/environment/setup-scripts/test_cron /etc/cron.d/test_cron # cronファイルをコピー
 sudo chmod 644 /etc/cron.d/test_cron
 sudo chown root:root /etc/cron.d/test_cron
 sudo cat /etc/cron.d/test_cron # cronファイルを確認
