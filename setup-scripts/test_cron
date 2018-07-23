@@ -1,3 +1,9 @@
+#
+#
+# [注意]
+#   1. Cronの設定ファイル名に"."を付けてはいけない
+#
+
 CRON_DIR=/home/ec2-user/environment/www/cron
 LOGS=/home/ec2-user/environment/www/logs
 
@@ -7,5 +13,7 @@ LOGS=/home/ec2-user/environment/www/logs
 
 # 1分毎実行
 * * * * * ec2-user php $CRON_DIR/1min_exec.php  1> $LOGS/1min_exec.php.log 2>&1
+* * * * * ec2-user sh $CRON_DIR/1min_exec.sh  1> $LOGS/1min_exec.sh.log 2>&1
+
 # 1時間毎実行
 1 * * * * ec2-user php $CRON_DIR/60min_exec.php 1> $LOGS/60min_exec.php.log 2>&1

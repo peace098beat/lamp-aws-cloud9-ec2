@@ -82,14 +82,18 @@ httpd -v                    # ヴァージョン確認
 sudo service httpd status   # webサーバーの状態確認
 sudo service httpd start            #　webサーバーの起動
 sudo chkconfig httpd on     # 再起動時に自動起動するように設定
-sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup
+# sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup
 
-mkdir -p /home/ec2-user/environment/www/html
+# リンクされた新しいドキュメントルートを作る
+PUBLIC_DIR=/home/ec2-user/environment/www/public
+mkdir -p $PUBLIC_DIR
+mkdir -p $PUBLIC_DIR/api
 sudo chown -R ec2-user:ec2-user /home/ec2-user/environment/www
-sh -c "echo 'hello' > /home/ec2-user/environment/www/html/index.php" #indexファイルの配置
-sh -c "date >> /home/ec2-user/environment/www/html/index.php" # 配置時刻を追加
-sh -c "echo '<?php' >> /home/ec2-user/environment/www/html/index.php" #indexファイルの配置
-sh -c "echo 'phpinfo();' >> /home/ec2-user/environment/www/html/index.php" # 配置時刻を追加
+# index.phpを生成
+sh -c "echo 'hello' > $PUBLIC_DIR/index.php" #indexファイルの配置
+sh -c "date >> $PUBLIC_DIR/index.php" # 配置時刻を追加
+sh -c "echo '<?php' >> $PUBLIC_DIR/index.php" #indexファイルの配置
+sh -c "echo 'phpinfo();' >> $PUBLIC_DIR/index.php" # 配置時刻を追加
 
 # いらない?
 # sudo usermod -a -G apache ec2-user # ec2-user を apache グループに追加
@@ -98,7 +102,7 @@ sh -c "echo 'phpinfo();' >> /home/ec2-user/environment/www/html/index.php" # 配
 # /var/www/htmlを削除
 sudo rm -rf /var/www/html
 # シンボリックリンクを張る
-sudo ln -s /home/ec2-user/environment/www/html /var/www/html
+sudo ln -s $PUBLIC_DIR /var/www/html
 chmod 755 /home/ec2-user # アクセス権限の設定 (根元のDIRまでアクセス権は影響する)
 sudo service httpd restart            #　webサーバーの起動
 curl localhost              # ウェブページの確認
@@ -152,14 +156,27 @@ EOF
 
 mysql -uroot << EOF
 -- テーブルの作成
-CREATE TABLE IF NOT EXISTS test_db.text_tbl (id int, name text(100));
+DROP TABLE IF EXISTS test_db.test_tbl;
+CREATE TABLE IF NOT EXISTS test_db.test_tbl (
+	id int AUTO_INCREMENT,
+	date text(100),
+	PRIMARY KEY (ID)
+	);
 
 -- テーブル一覧を表示する
 SHOW TABLES FROM test_db;
 
 -- テーブルの列の情報を一覧表示する
-SHOW COLUMNS FROM test_db.text_tbl;
+SHOW COLUMNS FROM test_db.test_tbl;
 EOF
+
+mysql -uroot << EOF
+-- 一行だけ挿入
+INSERT INTO test_db.test_tbl (date) VALUES ("2018/00/00 00:00:00");
+-- 全部取得
+SELECT * FROM test_db.test_tbl;
+EOF
+
 
 
 
