@@ -79,10 +79,13 @@ echo Web Server SETUP
 echo DocumentRoot "/var/www/html"
 echo ================================================== #
 httpd -v                    # ヴァージョン確認
-sudo service httpd status   # webサーバーの状態確認
-sudo service httpd start            #　webサーバーの起動
+sudo service httpd stop            #　webサーバーの起動
 sudo chkconfig httpd on     # 再起動時に自動起動するように設定
-# sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup
+sudo service httpd start            #　webサーバーの起動
+sudo service httpd status   # webサーバーの状態確認
+
+# welcomページを削除
+sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup
 
 # リンクされた新しいドキュメントルートを作る
 PUBLIC_DIR=/home/ec2-user/environment/www/public
@@ -101,6 +104,7 @@ sh -c "echo 'phpinfo();' >> $PUBLIC_DIR/index.php" # 配置時刻を追加
 
 # /var/www/htmlを削除
 sudo rm -rf /var/www/html
+
 # シンボリックリンクを張る
 sudo ln -s $PUBLIC_DIR /var/www/html
 chmod 755 /home/ec2-user # アクセス権限の設定 (根元のDIRまでアクセス権は影響する)
