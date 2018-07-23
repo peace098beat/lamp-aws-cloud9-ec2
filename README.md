@@ -40,24 +40,24 @@ $ sh ./setup-scripts/lamp-setup.sh
 ## ファイルの説明
 
 ```
-/home/ec2-user/environment/
+/home/ec2-user/environment/         (clound9 IDEのホームディレクトリ.)
 ├── README.md
-├── setup-scripts
+├── setup-scripts     (セットアップに利用するスクリプト郡. 作業後削除)
 │   ├── cron-setup.sh
 │   ├── lamp-setup.sh
 │   └── test_cron
 └── www
-    ├── cron
+    ├── cron      (cronにより実行されるファイル郡)
     │   ├── 1min_exec.php
     │   ├── 1min_exec.sh
     │   └── 60min_exec.php
-    ├── logs
+    ├── logs      (実行ログ)
     │   ├── 1min_exec.php.log
     │   ├── 1min_exec.sh.log
     │   ├── 60min_exec.php.log
     │   ├── cron_envs.log
     │   └── date-now-cron.log
-    └── public (ドキュメントルート)
+    └── public    (ドキュメントルート)
         ├── index.php
         ├── test_mysql_insert.php
         └── test_web.php
