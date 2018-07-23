@@ -85,7 +85,21 @@ $ mysql -uroot
 
 ## CRONの設定方法
 
+CRONの実行にはCRONファイルを/etc/crond.d/*に配置し、crondを再起動する必要がある.
+その際/etc/crond.d/*に配置するファイルのパーミッション等の取り決めがあり面倒なのでスクリプト化してある。
+
+
+CRONの設定方法は、test_cronに変更を加えたあと./setup-scripts/cron-setup.shを実行すると反映される.
+
 1. CRONファイルを変更
+
+```
+$ vim ./setup-scripts/test_cron
+
+(CRONファイルを修正)...
+
+```
+
 2. crondを再起動
 
  
