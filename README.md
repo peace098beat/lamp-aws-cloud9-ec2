@@ -37,6 +37,16 @@ $ git clone https://github.com/peace098beat/lamp-aws-cloud9-ec2.git ~/environmen
 $ sh ./setup-scripts/lamp-setup.sh
 ```
 
+以上.
+
+セットアップは完了です.
+
+開発を初めてください。
+
+以下は、リポジトリの詳細説明です。
+
+# 詳細説明
+
 ## ファイルの説明
 
 ```
@@ -85,9 +95,10 @@ $ mysql -uroot
 
 ## CRONの設定方法
 
+(lamp-setup.shの実行時にCRONは起動させてます。通常は以下の処理は不要です。以下は、変更が必要な場合の方法です)
+
 CRONの実行にはCRONファイルを/etc/crond.d/*に配置し、crondを再起動する必要がある.
 その際/etc/crond.d/*に配置するファイルのパーミッション等の取り決めがあり面倒なのでスクリプト化してある。
-
 
 CRONの設定方法は、test_cronに変更を加えたあと./setup-scripts/cron-setup.shを実行すると反映される.
 
