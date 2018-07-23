@@ -20,6 +20,7 @@ AWS Cloud9にてEC2の新規作成をして直接SSHで入っている環境が�
 		index.phpを生成
 		接続確認
 * :MySQL:
+        MySQL5.7へアップデート
 		ROOTパスワード生成
 		テストユーザ、テストDBの作成
 * :CRON:
