@@ -35,7 +35,8 @@
  * 
  * ***************************************************************************/
 
-
+print_r("<h1>test_mysql_insert.php</h1>");
+print_r("<p>MySQLのテストテーブル test_tblに1行INSERTする為のPHPファイルを作り実行する</p>");
 # ****************************************** #
 # DBに接続
 #  - host: localhost
@@ -62,6 +63,7 @@ $stmt -> bindParam(':date', $date, PDO::PARAM_STR);
 $date = date("Y/m/d H:i:s");
 $stmt -> execute();
 
+print_r("<p>1行挿入しました<p>");
 
 # ****************************************** #
 # COUNT
@@ -73,7 +75,7 @@ $stmt -> execute();
 $sql = "SELECT COUNT(*) FROM test_db.test_tbl";
 if ($res = $pdo->query($sql)) {
   $count = $res->fetchColumn(); # COUNT(*)の結果を取得
-  echo "行数は".$count."です<br>".PHP_EOL;
+  echo "<b>行数は".$count."です</b><br>".PHP_EOL;
 }
 
 
@@ -84,7 +86,7 @@ if ($res = $pdo->query($sql)) {
 #  - 全行を表示
 # ****************************************** #
 # クエリ実行
-$stmt = $pdo->query('SELECT * from test_db.test_tbl');
+$stmt = $pdo->query('SELECT * from test_db.test_tbl ORDER BY id DESC');
 
 # 一行毎に表示 (方法1)
 foreach($stmt as $row) {

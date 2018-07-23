@@ -14,9 +14,10 @@
 # [概要]
 # 2018年現在、AWS Cloud9サービスを利用することで、EC2インスタンスを自動で生成し
 # ブラウザ経由でSSH接続/コード編集ができるといったとても便利な時代になった。
-# 現在、Cloud9コンソールを利用して新規EC2を立ち上げると、
-# LAMP環境(Linux, Apache, MySQL, PHP)がそろったAmazon Linuxが立ち上がる.
+# 現在(2018/07/23)、Cloud9コンソールを利用して新規EC2を立ち上げると、
+# LAMP環境(Linux, Apache, MySQL5.5, PHP5)がそろったAmazon Linuxが立ち上がる.
 # 本スクリプトは、上述のCloud9にて構築したLAMP環境EC2にて、
+# PHP7, MySQL5.7へアップデートし
 # Webページを作成するためのセットアップを記述している.セットアップ内容は以下に示す.
 # 
 # [セットアップ内容]
@@ -30,6 +31,8 @@
 #	 :MySQL:
 #		ROOTパスワード生成
 #		テストユーザ、テストDBの作成
+#    :CRON:
+#       毎分起動されるCRONの設定
 #
 # [使い方]
 #	sh setup.sh (sudoは付けないこと!)
@@ -88,14 +91,14 @@ sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.backup
 
 # リンクされた新しいドキュメントルートを作る
 PUBLIC_DIR=/home/ec2-user/environment/www/public
-mkdir -p $PUBLIC_DIR
-mkdir -p $PUBLIC_DIR/api
+# mkdir -p $PUBLIC_DIR
+# mkdir -p $PUBLIC_DIR/api
 sudo chown -R ec2-user:ec2-user /home/ec2-user/environment/www
-# index.phpを生成
-sh -c "echo 'hello' > $PUBLIC_DIR/index.php" #indexファイルの配置
-sh -c "date >> $PUBLIC_DIR/index.php" # 配置時刻を追加
-sh -c "echo '<?php' >> $PUBLIC_DIR/index.php" #indexファイルの配置
-sh -c "echo 'phpinfo();' >> $PUBLIC_DIR/index.php" # 配置時刻を追加
+# index.phpを生成 (不要)
+# sh -c "echo 'hello' > $PUBLIC_DIR/index.php" #indexファイルの配置
+# sh -c "date >> $PUBLIC_DIR/index.php" # 配置時刻を追加
+# sh -c "echo '<?php' >> $PUBLIC_DIR/index.php" #indexファイルの配置
+# sh -c "echo 'phpinfo();' >> $PUBLIC_DIR/index.php" # 配置時刻を追加
 
 # いらない?
 # sudo usermod -a -G apache ec2-user # ec2-user を apache グループに追加

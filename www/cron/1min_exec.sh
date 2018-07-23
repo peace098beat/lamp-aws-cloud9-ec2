@@ -16,4 +16,5 @@ set -eu
 # 現在時刻を表示
 date
 
+# 1分毎にINSERT
 php /home/ec2-user/environment/www/public/test_mysql_insert.php

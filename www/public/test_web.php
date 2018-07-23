@@ -29,6 +29,8 @@
  
 $now = date("Y/m/d H:i:s");
 
-print_r("現在の時刻は".$now."です");
+print_r("<h1>test_web.php</h1>");
+print_r("<p>概要: Apacheにてweb画面を表示する</p>");
+print_r("<p>現在の時刻は<b>".$now."</b>です</p>");
 
 ?>
