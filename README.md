@@ -31,7 +31,7 @@ EC2のページを開き, インバウンドのhttp/ポート80を開放して�
 $ sh rm -rf ~/environment/*
 
 # リポジトリをクローン (中身だけをクローン)
-$ git clone https://github.com/peace098beat/lamp-aws-cloud9-ec2.git ~/. 
+$ git clone https://github.com/peace098beat/lamp-aws-cloud9-ec2.git ~/environment/. 
 
 # セットアップスクリプトの実行
 $ sh ./setup-scripts/lamp-setup.sh
