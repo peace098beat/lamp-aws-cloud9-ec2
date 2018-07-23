@@ -1,4 +1,4 @@
 hello
-Sun Jul 22 11:16:51 UTC 2018
+Mon Jul 23 17:10:25 JST 2018
 <?php
 phpinfo();
